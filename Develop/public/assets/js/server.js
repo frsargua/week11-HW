@@ -9,7 +9,15 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
-app.get("/", (req, res) =>
+// Loads notes.html file
+app.get("/notes", (req, res) =>
+  res.sendFile(
+    "/Users/fabiansarango/Desktop/Bootcamp-2022/Bootcamp Weekly HW/week11-HW/Develop/public/notes.html"
+  )
+);
+
+// Loads index.html file if url is anything other than notes.
+app.get("*", (req, res) =>
   res.sendFile(
     "/Users/fabiansarango/Desktop/Bootcamp-2022/Bootcamp Weekly HW/week11-HW/Develop/public/index.html"
   )
