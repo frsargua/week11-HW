@@ -1,11 +1,12 @@
 const express = require("express");
-const db = require("../../../db/db.json");
+const path = require("path");
+const db = require("./db/db.json");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
 
 // Express middleware
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static("public"));
@@ -14,11 +15,12 @@ app.use(express.static("public"));
 app.get("/api/notes", (req, res) => res.json(db));
 
 // Loads notes.html file
-app.get("/notes", (req, res) =>
+app.get("/notes", (req, res) => {
+  // res.sendFile();
   res.sendFile(
     "/Users/fabiansarango/Desktop/Bootcamp-2022/Bootcamp Weekly HW/week11-HW/Develop/public/notes.html"
-  )
-);
+  );
+});
 
 app.delete("/api/notes/:id", (req, res) => {
   const idParam = parseInt(req.params.id);
