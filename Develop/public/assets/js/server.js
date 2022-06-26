@@ -9,6 +9,12 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
+app.get("/", (req, res) =>
+  res.sendFile(
+    "/Users/fabiansarango/Desktop/Bootcamp-2022/Bootcamp Weekly HW/week11-HW/Develop/public/index.html"
+  )
+);
+
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
 );
