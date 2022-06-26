@@ -10,6 +10,9 @@ app.use(express.json());
 
 app.use(express.static("public"));
 
+// Loads database file
+app.get("/api/notes", (req, res) => res.json(db));
+
 // Loads notes.html file
 app.get("/notes", (req, res) =>
   res.sendFile(
