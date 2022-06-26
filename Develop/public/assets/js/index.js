@@ -102,6 +102,7 @@ const handleNoteDelete = (e) => {
 // Sets the activeNote and displays it
 const handleNoteView = (e) => {
   e.preventDefault();
+  // ActiveNote is an object
   activeNote = JSON.parse(e.target.parentElement.getAttribute("data-note"));
   renderActiveNote();
 };
@@ -137,7 +138,7 @@ const renderNoteList = async (notes) => {
     const liEl = document.createElement("li");
     liEl.classList.add("list-group-item");
 
-    // Create span element with class
+    // Create span element with class and add text from func arguments
     const spanEl = document.createElement("span");
     spanEl.classList.add("list-item-title");
     spanEl.innerText = text;
