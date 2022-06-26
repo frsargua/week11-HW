@@ -20,6 +20,23 @@ app.get("/notes", (req, res) =>
   )
 );
 
+app.delete("/api/notes/:id", (req, res) => {
+  const idParam = parseInt(req.params.id);
+  // const deleteVal = db.find((value) => value.id == idParam);
+  const isIdInDb = db.some((value) => value.id == idParam);
+  if (isIdInDb) {
+    db.pop();
+    res.send(`Id = ${idParam} removed`);
+  } else res.send("No id present");
+});
+
+app.post("/api/notes", (req, res) => {
+  const newNoteObject = req.body;
+  db.push(newNoteObject);
+
+  res.send(db);
+});
+
 // Loads index.html file if url is anything other than notes.
 app.get("*", (req, res) =>
   res.sendFile(
