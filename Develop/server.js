@@ -24,12 +24,16 @@ app.get("/notes", (req, res) => {
 
 app.delete("/api/notes/:id", (req, res) => {
   const idParam = parseInt(req.params.id);
-  // const deleteVal = db.find((value) => value.id == idParam);
   const isIdInDb = db.some((value) => value.id == idParam);
   if (isIdInDb) {
-    db.pop();
-    res.send(`Id = ${idParam} removed`);
-  } else res.send("No id present");
+    res.send({
+      message: "deleted",
+      changes: `Note with Id: ${idParam} has been deleted `,
+      object: db.pop(),
+    });
+  }
+  res.status(404).json({ id: "Id does not exists!" });
+  return;
 });
 
 app.post("/api/notes", (req, res) => {
