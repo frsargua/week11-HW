@@ -53,6 +53,7 @@ const deleteNote = (id) =>
 // Allows the textarea and input to be readonly or accessible
 const renderActiveNote = () => {
   hide(saveNoteBtn);
+  console.log(activeNote);
 
   if (activeNote.id) {
     noteTitle.setAttribute("readonly", true);
@@ -70,9 +71,12 @@ const renderActiveNote = () => {
 const handleNoteSave = () => {
   // Save as newNotes' object
   const newNote = {
+    id: uuid(),
     title: noteTitle.value,
     text: noteText.value,
   };
+
+  console.log(newNote);
   // Save to express server's database
   saveNote(newNote).then(() => {
     //
@@ -190,3 +194,7 @@ if (window.location.pathname === "/notes") {
 }
 
 getAndRenderNotes();
+
+const uuid = () => {
+  return Math.floor((1 + Math.random()) * 0x10000);
+};
