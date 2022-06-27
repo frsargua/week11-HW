@@ -39,8 +39,11 @@ app.delete("/api/notes/:id", (req, res) => {
 app.post("/api/notes", (req, res) => {
   const newNoteObject = req.body;
   db.push(newNoteObject);
-
-  res.send(db);
+  res.send({
+    message: "Created",
+    changes: `Note with Id: ${newNoteObject.id} has been created `,
+    object: newNoteObject,
+  });
 });
 
 // Loads index.html file if url is anything other than notes.
