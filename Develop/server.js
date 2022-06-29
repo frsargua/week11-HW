@@ -8,11 +8,7 @@ const app = express();
 // Express middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 app.use(express.static("public"));
-
-// Loads database file
-app.get("/api/notes", (req, res) => res.json(db));
 
 // Loads notes.html file
 app.get("/notes", (req, res) => {
@@ -22,6 +18,10 @@ app.get("/notes", (req, res) => {
   );
 });
 
+// Loads database file
+app.get("/api/notes", (req, res) => res.json(db));
+
+//Deletes notes based on their id
 app.delete("/api/notes/:id", (req, res) => {
   const idParam = parseInt(req.params.id);
   const isIdInDb = db.some((value) => value.id == idParam);
@@ -36,6 +36,7 @@ app.delete("/api/notes/:id", (req, res) => {
   return;
 });
 
+//Creates a new note from object passed by the client
 app.post("/api/notes", (req, res) => {
   const newNoteObject = req.body;
   db.push(newNoteObject);
@@ -53,6 +54,7 @@ app.get("*", (req, res) =>
   )
 );
 
+//Listening to a port
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT} 🚀`)
 );
