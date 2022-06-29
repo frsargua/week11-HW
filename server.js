@@ -16,7 +16,7 @@ app.use(routes);
 // Loads index.html file if url is anything other than notes.
 app.get("*", (req, res) =>
   res.sendFile(
-    "/Users/fabiansarango/Desktop/Bootcamp-2022/Bootcamp Weekly HW/week11-HW/Develop/public/index.html"
+    "/Users/fabiansarango/Desktop/Bootcamp-2022/Bootcamp Weekly HW/week11-HW/public/index.html"
   )
 );
 
