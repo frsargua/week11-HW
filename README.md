@@ -16,7 +16,7 @@
 
 ## Description
 
-This app allows a manager to be able to view and manage the departments, roles, and employees in the company so that he can organize and plan my business.
+This app allows a user to save, check and delete notes. This app uses a JSON file as a database. Via the use of API routes through the backend.
 
 ## Installation
 
